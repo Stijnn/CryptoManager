@@ -13,7 +13,7 @@ namespace CryptoManager
 		{
 			InitializeComponent();
 
-			MainPage = new CryptoManager.MainPage();
+            MainPage = new CryptoManager.Views.Application.ApplicationLayout();
 		}
 
 		protected override void OnStart ()
