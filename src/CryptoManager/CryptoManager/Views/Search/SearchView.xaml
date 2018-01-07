@@ -4,9 +4,7 @@
              x:Class="CryptoManager.Views.Search.SearchView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Search"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" />
+            <Button x:Name="btn" x:Uid="btn"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

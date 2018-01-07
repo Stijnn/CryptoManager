@@ -7,7 +7,6 @@
             <Label Text="Favorites"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Button x:Name="btn" x:Uid="btn"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
