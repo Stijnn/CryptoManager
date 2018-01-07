@@ -6,9 +6,9 @@ namespace CryptoManager.Core
 {
     class Worker
     {
-        public static async Task<Currency> GetCurrency(string coinId)
+        public static async Task<Currency> GetCurrency(string coinId, string currency)
         {
-            string query = $"https://api.coinmarketcap.com/v1/ticker/{coinId}/";
+            string query = $"https://api.coinmarketcap.com/v1/ticker/{coinId}/?convert={currency}";
             dynamic results = await Service.getData(query).ConfigureAwait(false);
             Currency cur = new Currency();
 
@@ -28,7 +28,7 @@ namespace CryptoManager.Core
                 cur.PercChangeHour = results[0]["percent_change_1h"];
                 cur.PercChangeDay = results[0]["percent_change_24h"];
                 cur.PercChangeWeek = results[0]["percent_change_7d"];
-                cur.LastUpdate = Epoch.Timestamp(Convert.ToDouble(results[0]["last_updated"]));
+                cur.LastUpdate = Epoch.Timestamp(results[0]["last_updated"].Value.ToString());
 
                 return cur;
             }
