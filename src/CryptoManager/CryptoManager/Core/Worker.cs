@@ -1,9 +1,6 @@
 ﻿using CryptoManager.Core.Data;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 
 namespace CryptoManager.Core
 {
@@ -13,9 +10,10 @@ namespace CryptoManager.Core
         {
             string query = $"https://api.coinmarketcap.com/v1/ticker/{coinId}/";
             dynamic results = await Service.getData(query).ConfigureAwait(false);
+            Currency cur = new Currency();
+
             if (results != null)
             {
-                Currency cur = new Currency();
                 cur.ID = results[0]["id"];
                 cur.Title = results[0]["name"];
                 cur.Symbol = results[0]["symbol"];
@@ -30,13 +28,13 @@ namespace CryptoManager.Core
                 cur.PercChangeHour = results[0]["percent_change_1h"];
                 cur.PercChangeDay = results[0]["percent_change_24h"];
                 cur.PercChangeWeek = results[0]["percent_change_7d"];
-                cur.LastUpdate = results[0]["last_updated"];
+                cur.LastUpdate = Epoch.Timestamp(Convert.ToDouble(results[0]["last_updated"]));
 
                 return cur;
             }
             else
             {
-                return null;
+                return cur;
             }
         }
     }
