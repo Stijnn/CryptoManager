@@ -26,8 +26,8 @@ namespace CryptoManager.Views.Search
 
         private async void Btn_Clicked(object sender, EventArgs e)
         {
-            Currency cur = await Core.Worker.GetCurrency("bitcoin");
-            await DisplayAlert("Title", cur.Price_USD, "Cancel");
+            Currency cur = await Core.Worker.GetCurrency("bitcoin","usd");
+            await DisplayAlert("Title", cur.LastUpdate, "Cancel");
         }
     }
 }

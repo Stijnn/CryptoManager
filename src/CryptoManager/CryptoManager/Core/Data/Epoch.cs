@@ -5,9 +5,9 @@ namespace CryptoManager.Core.Data
 {
     class Epoch
     {
-        public static async Task<string> Timestamp(double unixSec)
+        public static string Timestamp(string unixSec)
         {
-            DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(unixSec);
+            DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Local).AddSeconds(Convert.ToDouble(unixSec));
             return $"{epoch.ToLongTimeString()} {epoch.ToLongDateString()}";
         }
     }
