@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace CryptoManager.Views.Favorites
@@ -12,9 +6,9 @@ namespace CryptoManager.Views.Favorites
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class FavoriteView : ContentPage
 	{
-		public FavoriteView()
-		{
-			InitializeComponent();
+        public FavoriteView()
+        {
+            InitializeComponent();
         }
-	}
+    }
 }

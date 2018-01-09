@@ -4,9 +4,48 @@
              x:Class="CryptoManager.Views.Search.SearchView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Search"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" />
+            <Label Text="Settings" x:Name="lbl0"/>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button Text="Hello" />
+                <Button Grid.Column="1" Text="Click"/>
+                <Button Grid.Column="2" Text="Click"/>
+            </Grid>
+
+            <Label Text="Main Currency" x:Name="lbl1" />
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Picker Title="Default : USD" x:Name="currencyValue"/>
+                <Button Grid.Column="1" Text="Set currency" x:Name="currencyPicker" />
+            </Grid>
+
+            <Label Text="Crypto Currency" x:Name="lbl2" />
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Picker Title="Default : BTC" x:Name="cryptoValue"/>
+                <Button Grid.Column="1" Text="Set currency" x:Name="cryptoPicker"/>
+            </Grid>
+            
+            <Button Text="Calculate" x:Name="calcBtn"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
