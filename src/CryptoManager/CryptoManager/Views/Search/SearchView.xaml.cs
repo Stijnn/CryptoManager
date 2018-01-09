@@ -40,6 +40,7 @@ namespace CryptoManager.Views.Search
 
         private void CryptoPicker_Clicked(object sender, EventArgs e)
         {
+            
         }
 
         private void CurrencyPicker_Clicked(object sender, EventArgs e)
