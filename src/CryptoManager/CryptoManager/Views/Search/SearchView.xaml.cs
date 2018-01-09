@@ -52,7 +52,15 @@ namespace CryptoManager.Views.Search
         private async void calcBtn_Clicked(object sender, EventArgs e)
         {
             Currency cur = await Core.Worker.GetCurrency("bitcoin",convertTo);
-            await DisplayAlert("Title", cur.LastUpdate, "Cancel");
+            var result = await DisplayAlert($"{cur.Title}", cur.Price_USD, "OK","Favorite");
+            if (result == true) // if it's equal to Ok
+            {
+                return;
+            }
+            else
+            {
+                await DisplayAlert("Title", "Unfortunately this function isn't implemented yet", "OK");
+            }
         }
     }
 }
