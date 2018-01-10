@@ -35,6 +35,7 @@ namespace CryptoManager.Views.Application
                 {
                     new ApplicationLayoutMenuItem(typeof(Favorites.FavoriteView)) { Id = 0, Title = "Favorites" },
                     new ApplicationLayoutMenuItem(typeof(Search.SearchView)) { Id = 1, Title = "Search" },
+                    new ApplicationLayoutMenuItem(typeof(Coins.CoinsView)) { Id = 2, Title = "Coins" },
                 });
             }
             
