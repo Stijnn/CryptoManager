@@ -14,7 +14,7 @@ namespace CryptoManager.Views.Search
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SearchView : ContentPage
 	{
-        private string convertTo;
+        private string convertTo = "USD";
         public SearchView()
         {
             InitializeComponent();

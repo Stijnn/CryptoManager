@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.Net.Http;
 
-namespace CryptoManager.Core.Data
+namespace CryptoManager
 {
     class Service
     {

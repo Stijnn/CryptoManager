@@ -24,21 +24,21 @@ namespace CryptoManager.Core.Data
 
         public Currency()
         {
-            ID = " ";
-            Title = " ";
-            Symbol = " ";
-            CMCRank = " ";
-            Price_USD = " ";
-            Price_BTC = " ";
-            Volume = " ";
-            MCUsd = " ";
-            Available = " ";
-            Total = " ";
-            Max = " ";
-            PercChangeHour = " ";
-            PercChangeDay = " ";
-            PercChangeWeek = " ";
-            LastUpdate = " ";
+            ID = "-";
+            Title = "-";
+            Symbol = "-";
+            CMCRank = "-";
+            Price_USD = "-";
+            Price_BTC = "-";
+            Volume = "-";
+            MCUsd = "-";
+            Available = "-";
+            Total = "-";
+            Max = "-";
+            PercChangeHour = "-";
+            PercChangeDay = "-";
+            PercChangeWeek = "-";
+            LastUpdate = "-";
         }
     }
 }

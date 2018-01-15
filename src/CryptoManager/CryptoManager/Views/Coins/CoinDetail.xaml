@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CryptoManager.Views.Coins.CoinDetail">
+    <ContentPage.Content>
+        <Grid>
+            <Grid x:Name="loaderGrid" IsVisible="True">
+                <ActivityIndicator x:Name="spinner" IsRunning="False" VerticalOptions="Center" HorizontalOptions="Center" />
+            </Grid>
+            <Grid x:Name="mainGrid" IsVisible="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="8*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" x:Name="topSection" BackgroundColor="#03A9F4">
+                    <Label TextColor="White" XAlign="Center" x:Name="lblSymbol" HorizontalOptions="Center" FontSize="Large" VerticalOptions="Center"></Label>
+                </Grid>
+                <ScrollView Grid.Row="1" x:Name="lowerSection">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="5*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" HorizontalOptions="End" VerticalOptions="Start">
+                            <Label TextColor="White" XAlign="End">ID:</Label>
+                            <Label TextColor="White" XAlign="End">Title:</Label>
+                            <Label TextColor="White" XAlign="End">CMC Rank:</Label>
+                            <Label TextColor="White" XAlign="End">Price USD:</Label>
+                            <Label TextColor="White" XAlign="End">Price BTC:</Label>
+                            <Label TextColor="White" XAlign="End">Volume:</Label>
+                            <Label TextColor="White" XAlign="End">MC USD:</Label>
+                            <Label TextColor="White" XAlign="End">Available:</Label>
+                            <Label TextColor="White" XAlign="End">Total:</Label>
+                            <Label TextColor="White" XAlign="End">Max:</Label>
+                            <Label TextColor="White" XAlign="End">Perc. Change hour:</Label>
+                            <Label TextColor="White" XAlign="End">Perc. Change day:</Label>
+                            <Label TextColor="White" XAlign="End">Perc. Change week:</Label>
+                            <Label TextColor="White" XAlign="End">Last update:</Label>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Start">
+                            <Label XAlign="Start" x:Name="lblId"></Label>
+                            <Label XAlign="Start" x:Name="lblTitle"></Label>
+                            <Label XAlign="Start" x:Name="lblCMCRank"></Label>
+                            <Label XAlign="Start" x:Name="lblPriceUSD"></Label>
+                            <Label XAlign="Start" x:Name="lblPriceBTC"></Label>
+                            <Label XAlign="Start" x:Name="lblVolume"></Label>
+                            <Label XAlign="Start" x:Name="lblMCUsd"></Label>
+                            <Label XAlign="Start" x:Name="lblAvailable"></Label>
+                            <Label XAlign="Start" x:Name="lblTotal"></Label>
+                            <Label XAlign="Start" x:Name="lblMax"></Label>
+                            <Label XAlign="Start" x:Name="lblPercChangeHour"></Label>
+                            <Label XAlign="Start" x:Name="lblPerChangeDay"></Label>
+                            <Label XAlign="Start" x:Name="lblPerChangeWeek"></Label>
+                            <Label XAlign="Start" x:Name="lblLastUpdate"></Label>
+                        </StackLayout>
+                    </Grid>
+                </ScrollView>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

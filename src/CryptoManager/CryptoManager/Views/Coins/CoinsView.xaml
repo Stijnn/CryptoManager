@@ -10,8 +10,8 @@
                         <ViewCell>
                             <ViewCell.View>
                                 <Grid HeightRequest="100" BackgroundColor="{Binding cellColor}">
-                                    <Label TextColor="#03A9F4" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0,0,0" Text="{Binding displayId}"/>
-                                    <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="80,0,0,0" Text="{Binding displayFullName}"/>
+                                    <Label TextColor="#03A9F4" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0,0,0" Text="{Binding displaySymbol}"/>
+                                    <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="90,0,0,0" Text="{Binding displayFullName}"/>
                                     <Label HorizontalOptions="End" VerticalOptions="Center" Margin="0,-10,20,0" FontSize="Micro" Text="{Binding displayPriceUSD}"/>
                                     <Label HorizontalOptions="End" VerticalOptions="Center" Margin="0,10,20,0" FontSize="Micro" Text="{Binding displayPriceBTC}"/>
                                 </Grid>
@@ -20,7 +20,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ActivityIndicator x:Name="spinner" IsVisible="False" IsRunning="false" VerticalOptions="Center" HorizontalOptions="Center" />
+            <ActivityIndicator x:Name="spinner" IsVisible="False" IsRunning="False" VerticalOptions="Center" HorizontalOptions="Center" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

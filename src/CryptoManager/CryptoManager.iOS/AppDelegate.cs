@@ -24,6 +24,7 @@ namespace CryptoManager.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+            Xamarin.Forms.DependencyService.Register<SaveAndLoad>();
 
             return base.FinishedLaunching(app, options);
         }
