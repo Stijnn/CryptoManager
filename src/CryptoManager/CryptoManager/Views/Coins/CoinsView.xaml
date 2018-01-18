@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CryptoManager.Views.Coins.CoinsView">
-    <ContentView.Content>
+    <ContentPage.Content>
         <Grid>
             <Grid x:Name="mainGrid" IsVisible="False">
                 <ListView x:Name="listCoins" VerticalOptions="Fill" IsPullToRefreshEnabled="False">
@@ -23,9 +23,9 @@
                 </ListView>
             </Grid>
             <Grid x:Name="loaderGrid">
-                <ActivityIndicator x:Name="spinner" IsVisible="False" IsRunning="False" VerticalOptions="Center" HorizontalOptions="Center" />
-                <Label x:Name="statusText" IsVisible="False" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,75,0,0" />
+                <ActivityIndicator x:Name="spinner" IsRunning="False" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Label x:Name="statusText" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,75,0,0" />
             </Grid>
         </Grid>
-    </ContentView.Content>
-</ContentView>
+    </ContentPage.Content>
+</ContentPage>
