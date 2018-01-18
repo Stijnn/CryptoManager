@@ -1,25 +1,23 @@
-﻿using CryptoManager.Core.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Newtonsoft.Json.Linq;
 
 namespace CryptoManager.Views.Coins
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CoinsView : ContentPage
+	public partial class CoinsView : ContentView
 	{
 		public CoinsView ()
 		{
-			InitializeComponent();
+			InitializeComponent ();
             AllowMethodes();
             LoadCoins();
-		}
+            refreshButton = new ToolbarItem("Refresh", "refresh.png", new Action(() => { LoadCoins(); }));
+        }
 
         private void AllowMethodes()
         {
@@ -29,9 +27,13 @@ namespace CryptoManager.Views.Coins
         private async void LoadCoins()
         {
             spinner.IsRunning = true;
-            spinner.IsVisible = true;
-            List<Bindings.CoinCell> source = new List<Bindings.CoinCell>();          
-            JArray results = await Service.getData("https://api.coinmarketcap.com/v1/ticker/?limit=0");
+            loaderGrid.IsVisible = true;
+            mainGrid.IsVisible = false;
+            ToolbarItems.Remove(refreshButton);
+
+            List<Bindings.CoinCell> source = new List<Bindings.CoinCell>();
+            statusText.Text = Files.FileDependency.Exists("test.json") ? "Loading local data..." : "Loading server data...";
+            JArray results = await Core.Fetcher.FetchJson();
             List<Currency> curList = new List<Currency>();
 
             int count = 0;
@@ -76,18 +78,22 @@ namespace CryptoManager.Views.Coins
                 else
                     swCol = 0;
 
-                source.Add(new Bindings.CoinCell(cols[swCol], curList[i].Symbol, curList[i].ID, curList[i].Title, $"${curList[i].Price_USD}", $"{curList[i].Price_BTC} BTC" ));
+                source.Add(new Bindings.CoinCell(cols[swCol], curList[i].Symbol, curList[i].ID, curList[i].Title, $"${curList[i].Price_USD}", $"{curList[i].Price_BTC} BTC"));
             }
             listCoins.ItemsSource = source;
             spinner.IsRunning = false;
-            spinner.IsVisible = false;
+            loaderGrid.IsVisible = false;
+            mainGrid.IsVisible = true;
+
+            if (!ToolbarItems.Contains(refreshButton))
+                ToolbarItems.Add(refreshButton);
         }
 
         private void listCoins_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null) return;
             Navigation.PushAsync(new CoinDetail(((sender as ListView).SelectedItem as Bindings.CoinCell).displayId));
-            ((ListView)sender).SelectedItem = null;          
+            ((ListView)sender).SelectedItem = null;
         }
     }
 }

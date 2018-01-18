@@ -6,16 +6,20 @@ using System.Collections.Generic;
 
 using Foundation;
 using UIKit;
+using System.Threading.Tasks;
 
 namespace CryptoManager.iOS
 {
     class SaveAndLoad : ISaveAndLoad
     {
-        public string LoadFile(string filename)
+        public async Task<string> LoadFile(string filename)
         {
             string saveFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string savePath = Path.Combine(saveFolder, filename);
-            return File.ReadAllText(savePath);
+            using (StreamReader reader = File.OpenText(savePath))
+            {
+                return await reader.ReadToEndAsync();
+            }
         }
 
         public void SaveFile(string filename, string text)
@@ -23,6 +27,13 @@ namespace CryptoManager.iOS
             string saveFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string savePath = Path.Combine(saveFolder, filename);
             File.WriteAllText(savePath, text);
+        }
+
+        public bool Exists(string filename)
+        {
+            string saveFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            string savePath = Path.Combine(saveFolder, filename);
+            return File.Exists(savePath);
         }
     }
 }

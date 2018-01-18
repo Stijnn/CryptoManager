@@ -6,16 +6,7 @@ using System.Threading.Tasks;
 
 namespace CryptoManager.UWP
 {
-    class SaveAndLoad : ISaveAndLoad
+    class SaveAndLoad
     {
-        public string LoadFile(string filename)
-        {
-            return null;
-        }
-
-        public void SaveFile(string filename, string text)
-        {
-
-        }
     }
 }
