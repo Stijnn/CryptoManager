@@ -1,12 +1,13 @@
-﻿using CryptoManager.Core.Data;
+﻿using Android.Widget;
+using CryptoManager.Core.Data;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
+using ListView = Xamarin.Forms.ListView;
 
 
 namespace CryptoManager.Views.Coins
@@ -15,12 +16,17 @@ namespace CryptoManager.Views.Coins
 	public partial class CoinsView : ContentPage
 	{
         private ToolbarItem refreshButton;
-		public CoinsView ()
+        private ToolbarItem infoButton;
+        public CoinsView ()
 		{
 			InitializeComponent ();
             AllowMethodes();
             LoadCoins();
+
             refreshButton = new ToolbarItem("Refresh", "refresh.png", new Action(() => { LoadCoins(); }));
+            infoButton = new ToolbarItem("Last synctime", "info.png", new Action(async() => {
+                Toast.MakeText(Android.App.Application.Context, "Last synced: " + await Files.FileDependency.GetSingleJsonValue<string>("settings.json", "lastSyncDate"), ToastLength.Short).Show();
+            }));
         }
 
         private void AllowMethodes()
@@ -33,11 +39,14 @@ namespace CryptoManager.Views.Coins
             spinner.IsRunning = true;
             loaderGrid.IsVisible = true;
             mainGrid.IsVisible = false;
+            ToolbarItems.Remove(infoButton);
             ToolbarItems.Remove(refreshButton);
 
             List<Bindings.CoinCell> source = new List<Bindings.CoinCell>();
-            statusText.Text = Files.FileDependency.Exists("test.json") ? "Loading local data..." : "Loading server data...";
-            JArray results = await Core.Fetcher.FetchJson();
+
+            string target = await Core.Fetcher.TargetLoad();
+            statusText.Text = $"Loading { target.ToLower() } data...";
+            JArray results = await Core.Fetcher.FetchCoinData();
             List<Currency> curList = new List<Currency>();
 
             int count = 0;
@@ -89,8 +98,10 @@ namespace CryptoManager.Views.Coins
             loaderGrid.IsVisible = false;
             mainGrid.IsVisible = true;
 
+            if (!ToolbarItems.Contains(infoButton))
+                ToolbarItems.Add(infoButton);
             if (!ToolbarItems.Contains(refreshButton))
-                ToolbarItems.Add(refreshButton);
+                ToolbarItems.Add(refreshButton);            
         }
 
         private void listCoins_ItemTapped(object sender, ItemTappedEventArgs e)
