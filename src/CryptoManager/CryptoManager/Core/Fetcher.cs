@@ -63,20 +63,30 @@ namespace CryptoManager.Core
         public static async Task<string> TargetLoad()
         {
             FirstBootCheck();
-
             string lastSyncDate = await Files.FileDependency.GetSingleJsonValue<string>("settings.json", "lastSyncDate");
-            TimeSpan t1 = TimeSpan.Parse(DateTime.Now.ToString("HH:mm:ss"));
-            TimeSpan t2 = TimeSpan.Parse(DateTime.Parse(lastSyncDate).ToString("HH:mm:ss"));
+
+            DateTime d1 = DateTime.Now;
+            DateTime d2 = DateTime.Parse(lastSyncDate);
+
+            TimeSpan t1 = TimeSpan.Parse(d1.ToString("HH:mm:ss"));
+            TimeSpan t2 = TimeSpan.Parse(d2.ToString("HH:mm:ss"));
             TimeSpan t3 = t1.Subtract(t2);
 
             if (_firstTimeSetup)
                 return "Server";
 
+            if (d1.Day == 1)
+                if (d2.Day <= 31)
+                    return "Server";
+            else
+                if (d1.Day > d2.Day)
+                    return "Server";
+
             if (!Files.FileDependency.Exists("coinData.json"))
                 return "Server";
             else
             {
-                if (t3.TotalMinutes > 5)
+                if (t3.TotalMinutes >= 5)
                     return "Server";
                 else
                     return "Local";

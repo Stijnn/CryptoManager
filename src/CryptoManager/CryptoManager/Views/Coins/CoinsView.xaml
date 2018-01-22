@@ -4,27 +4,36 @@
              x:Class="CryptoManager.Views.Coins.CoinsView">
     <ContentPage.Content>
         <Grid>
-            <Grid x:Name="mainGrid" IsVisible="False">
-                <ListView x:Name="listCoins" VerticalOptions="Fill" IsPullToRefreshEnabled="False">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <ViewCell.View>
-                                    <Grid HeightRequest="100" BackgroundColor="{Binding cellColor}">
-                                        <Label TextColor="#03A9F4" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0,0,0" Text="{Binding displaySymbol}"/>
-                                        <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="90,0,0,0" Text="{Binding displayFullName}"/>
-                                        <Label HorizontalOptions="End" VerticalOptions="Center" Margin="0,-10,20,0" FontSize="Micro" Text="{Binding displayPriceUSD}"/>
-                                        <Label HorizontalOptions="End" VerticalOptions="Center" Margin="0,10,20,0" FontSize="Micro" Text="{Binding displayPriceBTC}"/>
-                                    </Grid>
-                                </ViewCell.View>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="heightDefTop" Height="0.5*" />
+                <RowDefinition x:Name="heightDefBottom" Height="9.5*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" x:Name="searchGrid" IsVisible="False">
+                <SearchBar x:Name="txtSearch" VerticalOptions="Center" HorizontalOptions="Fill" />
             </Grid>
-            <Grid x:Name="loaderGrid">
-                <ActivityIndicator x:Name="spinner" IsRunning="False" VerticalOptions="Center" HorizontalOptions="Center" />
-                <Label x:Name="statusText" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,75,0,0" />
+            <Grid Grid.Row="1">
+                <Grid x:Name="mainGrid" IsVisible="False">
+                    <ListView x:Name="listCoins" VerticalOptions="Fill" IsPullToRefreshEnabled="False">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+                                        <Grid HeightRequest="100" BackgroundColor="{Binding cellColor}">
+                                            <Label TextColor="#03A9F4" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0,0,0" Text="{Binding displaySymbol}"/>
+                                            <Label HorizontalOptions="Start" VerticalOptions="Center" Margin="90,0,0,0" Text="{Binding displayFullName}"/>
+                                            <Label HorizontalOptions="End" VerticalOptions="Center" Margin="0,-10,20,0" FontSize="Micro" Text="{Binding displayPriceUSD}"/>
+                                            <Label HorizontalOptions="End" VerticalOptions="Center" Margin="0,10,20,0" FontSize="Micro" Text="{Binding displayPriceBTC}"/>
+                                        </Grid>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+                <Grid x:Name="loaderGrid" IsVisible="True">
+                    <ActivityIndicator x:Name="spinner" IsRunning="False" VerticalOptions="Center" HorizontalOptions="Center" />
+                    <Label x:Name="statusText" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,75,0,0" />
+                </Grid>
             </Grid>
         </Grid>
     </ContentPage.Content>
