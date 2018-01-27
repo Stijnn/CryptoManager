@@ -76,8 +76,10 @@ namespace CryptoManager.Core
                 return "Server";
 
             if (d1.Day == 1)
-                if (d2.Day <= 31)
+            {
+                if (d2.Day <= 31 && d2.Day != 1)
                     return "Server";
+            }
             else
                 if (d1.Day > d2.Day)
                     return "Server";
@@ -87,7 +89,7 @@ namespace CryptoManager.Core
             else
             {
                 if (t3.TotalMinutes >= 5)
-                    return "Server";
+                        return "Server";
                 else
                     return "Local";
             }
